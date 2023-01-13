@@ -1,6 +1,13 @@
 
-//----------------------------- Pasword Charakters ------------------------------------------------------------------------------------------
 
+
+
+
+//----------------------------- Allowed Pasword Charakters ------------------------------------------------------------------------------------------
+
+var passCriteria = {
+
+  passLenght: 0;
 // Array of special characters to be included in password
 var specialCharacters = ['@','%','+','\\','/', "'",'!', '#', '$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'];
 console.table(specialCharacters)
@@ -15,6 +22,22 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 console.table(upperCasedCharacters)
 //------------------------------- Password Characters end -----------------------------------------------------------------------------------
 
+// ------------------------------ Password Variables - User input ----------------------------------------------------------------------------------
+}
+// var UserPassword
+
+
+var UserPasswordLenght = 0;
+var UserSpecialCharacters;
+var UserNumericCharacters;
+var UserLowerCasedCharacters;
+var UserUpperCasedCharacters; 
+
+
+
+
+
+// ----------------------------------------------------
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -34,7 +57,7 @@ function generatePassword() {
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input
+// Write password to the #password input  
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
