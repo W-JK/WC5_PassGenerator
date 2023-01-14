@@ -85,7 +85,7 @@ function generatePassword() {
 
     // ------------------ prompting user for password lenght -  starter code readme = 128; BTC = 64 - to be confirmed !!! -----------------------------------------------------------------
     while ( UserPasswordLenght < 8 || UserPasswordLenght > 128) {   
-      UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters. \nWould you like to create strong password?");
+      UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters. \n How strong you would like it to be?");
 
 
       //if operation canceled 
