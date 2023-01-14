@@ -6,7 +6,8 @@
 //----------------------------- Allowed Pasword Charakters ------------------------------------------------------------------------------------------
 
 
-var passLenght = 0;
+var passLenght = 0;   //note: var or change to let/const (?)
+
 
 // Array of special characters to be included in password
 var specialCharacters = ['@','%','+','\\','/', "'",'!', '#', '$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'];
@@ -26,142 +27,110 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 
 //------------------------------- Password Characters end -----------------------------------------------------------------------------------
 
+// ------------------------------ Variables to collect & store User Imput ---------------------------------------------------------------
+var UserPasswordLenght = 0;
+var UserSpecialCharacters;
+var UserNumericCharacters;
+var UserLowerCasedCharacters;
+var UserUpperCasedCharacters; 
 
-// paste bottom check
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input  
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
- generateBtn.addEventListener('click', writePassword); 
+// ----------------------------- User variable end ----------------------------------------------------------------------------------------
 
 
 
-
-
-
-
-
-
-
-// ----------------------------------------------------
 
 // Function to prompt user for password options
 function getPasswordOptions() {   
+UserSpecialCharacters    = confirm("Do you want to use any special characters?");
+UserNumericCharacters    = confirm("Do you want to use numbers?");
+UserLowerCasedCharacters = confirm("Do you want to use lower case letters?");
+UserUpperCasedCharacters = confirm("Do you want to use upper case letters?");
+
 
 }
 
-// Function for getting a random element from an array
+// Function for getting a random element from an array ---------- source function  ------------
 function getRandom(arr) {
+/* function random_item(items) {}
+ return items[Math.floor(Math.random()*items.length)];
+console.log(random.item(items)) } */ 
 
-}
+
+}  
+
+// ----------------------------------- get random end ------------------------------------
 
 
-// Function to generate password with user input
+
+// Function to generate password with user input ---------------------- source function ------
 function generatePassword() {
-  var UserPassword = "";
-// ------------------------------ Password Variables - User input ----------------------------------------------------------------------------------
-        // variable -  UserPassword
+          // own code ---------------------
+  // start criteria 
+  UserPasswordLenght = 0;
+  passLenght = 0;
+  UserPassword = "";
 
 
-        var UserPasswordLenght = 0;
-        var UserSpecialCharacters;
-        var UserNumericCharacters;
-        var UserLowerCasedCharacters;
-        var UserUpperCasedCharacters; 
-
-        // starter characters
-
-        UserPasswordLenght = 0;
-        passLenght  = 0;                           // property for pass lenght - sprawdzic
-        var UserPassword = "";                     // czy duble potrzebne
-
-    // ------------------ prompting user for password lenght -  starter code readme = 128; BTC = 64 - to be confirmed !!! -----------------------------------------------------------------
-    while ( UserPasswordLenght < 8 || UserPasswordLenght > 128) {   
-      UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters. \n How strong you would like it to be?");
-
-
-      //if operation canceled 
+  // variable holding user Password
+  var UserPassword = ""; //note: leave as string or change to array (?) 
+  
+  //Checking if password lengh criteria are fulfilled 
+  while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
+    UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
+                                "\n How strong you would like it to be?");
+  }
+  console.log ( "password lenght")
+  
+    //if user presses cancel                    // --------- note: placeholder- for correction 
     if (UserPasswordLenght === null) {
+      console.log("cancel")
       return "Your secure password";
-    }
-    else {
-      //checking if user typed number 
-      if (!isFinite(UserPasswordLenght)) {
-        alert("Please try again and enter number");
-        return "Your secure password";
-      }
-
-      else {
-        //checking length criteria
-        if (UserPasswordLenght < 8 || UserPasswordLenght > 128) {
-          alert("Password must be between 8 and 128 characters. \n Please Try again.");
+      
+       }
+   
+    else{
+          //checking user enters an integer
+          if (!isFinite(UserPasswordLenght)) {
+          alert("You did not enter a number"+"Let's Try Again.");
           return "Your secure password";
-        }
+          }
 
+                  //check password meets length criteria
+        if (UserPasswordLenght < 8 || UserPasswordLenght > 128) {
+          alert("Password must be between 8 and 128 characters."+
+          "\n Let's Try Again.");
+          return "Your secure password"; }
+        
         else {
 
-          // call for password criteria
-          showPrompts();
-// -------------------------------------------------------------------------------------------------------------
-          //add characters based on selected criteria to the length of the password set by user
-          while (passLenght < UserPasswordLenght) {                                                      //--------sprawdz 
-            //if statement to make sure the user selects at least one of the criteria  
-            if (UserSpecialCharacters === false && UserNumericCharacters === false && UserLowerCasedCharacters === UserLowerCasedCharacters) {
-              alert("You did not selected any characters. \n You must select at least one criteria of lowercase, uppercase, numbers or special characters to create password")
-              showPrompts();
-            }
-            else {
-
-            if (specialCharacters === true &&  passLenght < UserPasswordLenght) {
-              var sc = specialCharacters[Math.floor(Math.random() * 32)]
-              UserPassword = UserPassword + sc;
-              passLenght++;
-            }
-
-            if (numericCharacters === true && passLenght < UserPasswordLenght) {
-              var num = numericCharacters[Math.floor(Math.random() * 10)]
-              UserPassword = UserPassword + num;
-              passLenght++;
-            }
-
-            if (lowerCasedCharacters === true && passLenght < UserPasswordLenght) {
-              var lc = lowerCasedCharacters[Math.floor(Math.random() * 26)]
-              UserPassword = UserPassword + lc;
-              passLenght++;
-            }
-
-            if (upperCasedCharacters === true && passLenght < UserPasswordLenght) {
-              var uc = upperCasedCharacters [Math.floor(Math.random() * 26)]
-              UserPassword = UserPassword + uc;
-              passLenght++;
-            }
-          }
-        }
-      }
-    }
-  }
- //return the generated password back to the calling function
- return UserPassword;
-
-}  // --------------------------            Gnerate Password end ---------------------------------------
+          //call the internal function to show prompts for criteria
+          //getPasswordOptions();
+          console.log("password options")  
+          
+          getPasswordOptions();
+// ----------------------------------------------------------------
 
 
 
-/* 
+
+
+        //return the generated password back to the calling function
+        return UserPassword;
+    
+        
+        }}
+}
+
+
+
+
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input  
+// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
@@ -170,19 +139,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
- generateBtn.addEventListener('click', writePassword); 
-*/
-
-
-
-//internal function to prompt the user for criteria
-function showPrompts() {
-  UserSpecialCharacters    = confirm("Do you want to use any special characters?");
-  UserNumericCharacters    = confirm("Do you want to use numbers?");
-  UserLowerCasedCharacters = confirm("Do you want to use lower case letters?");
-  UserUpperCasedCharacters = confirm("Do you want to use upper case letters?");
-  
- 
-}
-}
-//}
+generateBtn.addEventListener('click', writePassword);
