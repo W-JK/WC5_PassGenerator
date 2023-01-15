@@ -6,7 +6,7 @@
 //----------------------------- Allowed Pasword Charakters ------------------------------------------------------------------------------------------
 
 
-var passLenght = 0;   //note: var or change to let/const (?)
+var passLenght = 0;   
 
 
 // Array of special characters to be included in password
@@ -30,9 +30,13 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 // ------------------------------ Variables to collect & store User Imput ---------------------------------------------------------------
 var UserPasswordLenght = 0;
 var UserSpecialCharacters;
+console.log(UserSpecialCharacters)
 var UserNumericCharacters;
 var UserLowerCasedCharacters;
 var UserUpperCasedCharacters; 
+
+  // variable holding user Password
+  var UserPassword = ""; //note: leave as string or change to array (?) 
 
 
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
@@ -41,17 +45,72 @@ var UserUpperCasedCharacters;
 
 
 // Function to prompt user for password options
-function getPasswordOptions() {   
+function getPasswordOptions() {  
+  console.log("getPAssOptions") 
 UserSpecialCharacters    = confirm("Do you want to use any special characters?");
+console.log(UserSpecialCharacters)
 UserNumericCharacters    = confirm("Do you want to use numbers?");
+console.log(UserNumericCharacters)
 UserLowerCasedCharacters = confirm("Do you want to use lower case letters?");
+console.log(UserLowerCasedCharacters)
 UserUpperCasedCharacters = confirm("Do you want to use upper case letters?");
+console.log(UserUpperCasedCharacters)
 
+
+// User character selection none - prompt for at least 1 option and return
+if(UserSpecialCharacters === false && UserNumericCharacters === false && UserLowerCasedCharacters === false && UserUpperCasedCharacters)
+  {  alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters")
+    getPasswordOptions(); 
+}
+else{
+  console.log(UserPasswordLenght)
+  getRandom()}
 
 }
 
 // Function for getting a random element from an array ---------- source function  ------------
-function getRandom(arr) {
+function getRandom(arr) { 
+  console.log("get random")
+  while (passLenght < UserPasswordLenght)   {
+
+    if (UserSpecialCharacters === true && passLenght < UserPasswordLenght) {
+      
+      var sc = specialCharacters[Math.floor(Math.random() * (specialCharacters.length))] 
+      UserPassword = UserPassword + sc;
+      passLenght++;
+    }
+
+    if (UserLowerCasedCharacters === true && passLenght < UserPasswordLenght) {
+      var lc = lowerCasedCharacters[Math.floor(Math.random() * (lowerCasedCharacters.length))] 
+      UserPassword = UserPassword + lc;
+      passLenght++;
+    }
+
+    if (UserNumericCharacters === true && passLenght < UserPasswordLenght) {
+      var nc = numericCharacters[Math.floor(Math.random() * (numericCharacters.length))] 
+      UserPassword = UserPassword + nc;
+      passLenght++;
+    }
+
+    if (UserUpperCasedCharacters === true && passLenght < UserPasswordLenght) {
+      var uc = upperCasedCharacters[Math.floor(Math.random() * (upperCasedCharacters.length))] 
+      UserPassword = UserPassword + uc;
+      passLenght++;
+      console.log("UCH added run test")
+    }
+
+    
+
+    
+  }   
+  // while end - password random character assigment
+
+  //return the generated password back to the calling function
+  console.log(UserPassword)
+  console.log("Password Lenght "+ UserPassword.length)
+  return UserPassword;
+
+
 /* function random_item(items) {}
  return items[Math.floor(Math.random()*items.length)];
 console.log(random.item(items)) } */ 
@@ -69,18 +128,17 @@ function generatePassword() {
   // start criteria 
   UserPasswordLenght = 0;
   passLenght = 0;
-  UserPassword = "";
+  // UserPassword = "";           //----------------  old code - remove?
 
 
-  // variable holding user Password
-  var UserPassword = ""; //note: leave as string or change to array (?) 
+
   
   //Checking if password lengh criteria are fulfilled 
   while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
     UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
                                 "\n How strong you would like it to be?");
   }
-  console.log ( "password lenght")
+  console.log ( "check password lenght")
   
     //if user presses cancel                    // --------- note: placeholder- for correction 
     if (UserPasswordLenght === null) {
@@ -105,19 +163,17 @@ function generatePassword() {
         else {
 
           //call the internal function to show prompts for criteria
-          //getPasswordOptions();
+          getPasswordOptions(); 
           console.log("password options")  
           
-          getPasswordOptions();
+          
 // ----------------------------------------------------------------
 
 
 
 
 
-        //return the generated password back to the calling function
-        return UserPassword;
-    
+          
         
         }}
 }
@@ -132,10 +188,10 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var UserPassword = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  passwordText.value = UserPassword;
 }
 
 // Add event listener to generate button
