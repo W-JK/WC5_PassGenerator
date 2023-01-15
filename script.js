@@ -8,7 +8,6 @@
 
 var passLenght = 0;   
 
-
 // Array of special characters to be included in password
 var specialCharacters = ['@','%','+','\\','/', "'",'!', '#', '$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'];
 // console.table(specialCharacters)
@@ -27,16 +26,15 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 
 //------------------------------- Password Characters end -----------------------------------------------------------------------------------
 
-// ------------------------------ Variables to collect & store User Imput ---------------------------------------------------------------
+// ------------------------------ User Imput - Variables to collect & store  ---------------------------------------------------------------
 var UserPasswordLenght = 0;
 var UserSpecialCharacters;
-console.log(UserSpecialCharacters)
 var UserNumericCharacters;
 var UserLowerCasedCharacters;
 var UserUpperCasedCharacters; 
 
 // variable holding user Password
-var UserPassword = [];  // ""; //note: leave as string or change to array (?) 
+var UserPassword = [];                // ""; //note: additional flexibility - string or array can be used
 
 
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
@@ -46,15 +44,15 @@ var UserPassword = [];  // ""; //note: leave as string or change to array (?)
 
 // Function to prompt user for password options
 function getPasswordOptions() {  
-  console.log("getPAssOptions") 
+  // build test: console.log("getPasswordOptions") 
 UserSpecialCharacters    = confirm("Do you want to use any special characters?");
-console.log(UserSpecialCharacters)
+console.log(UserSpecialCharacters)  // displaying user choice in console 
 UserNumericCharacters    = confirm("Do you want to use numbers?");
-console.log(UserNumericCharacters)
+console.log(UserNumericCharacters) // displaying user choice in console
 UserLowerCasedCharacters = confirm("Do you want to use lower case letters?");
-console.log(UserLowerCasedCharacters)
+console.log(UserLowerCasedCharacters) // displaying user choice in console
 UserUpperCasedCharacters = confirm("Do you want to use upper case letters?");
-console.log(UserUpperCasedCharacters)
+console.log(UserUpperCasedCharacters) // displaying user choice in console
 
 
 // User character selection none - prompt for at least 1 option and return
@@ -69,116 +67,114 @@ else{
 }
 
 // Function for getting a random element from an array ---------- source function  ------------
+
 function getRandom(arr) { 
-  console.log("get random")
+  // test: console.log("get random start point ")
   while (passLenght < UserPasswordLenght)   {
 
     if (UserSpecialCharacters === true && passLenght < UserPasswordLenght) {
-      
-      var sc = specialCharacters[Math.floor(Math.random() * (specialCharacters.length))] 
+            var sc = specialCharacters[Math.floor(Math.random() * (specialCharacters.length))] 
       UserPassword = UserPassword + sc;
       passLenght++;
-    }
-
-    if (UserLowerCasedCharacters === true && passLenght < UserPasswordLenght) {
-      var lc = lowerCasedCharacters[Math.floor(Math.random() * (lowerCasedCharacters.length))] 
-      UserPassword = UserPassword + lc;
-      passLenght++;
+      // console.log("run test sc")
     }
 
     if (UserNumericCharacters === true && passLenght < UserPasswordLenght) {
       var nc = numericCharacters[Math.floor(Math.random() * (numericCharacters.length))] 
       UserPassword = UserPassword + nc;
       passLenght++;
+      // console.log("run test nc")
     }
 
+    if (UserLowerCasedCharacters === true && passLenght < UserPasswordLenght) {
+      var lc = lowerCasedCharacters[Math.floor(Math.random() * (lowerCasedCharacters.length))] 
+      UserPassword = UserPassword + lc;
+      passLenght++;
+      // console.log("run test lc")
+    }
+    
     if (UserUpperCasedCharacters === true && passLenght < UserPasswordLenght) {
       var uc = upperCasedCharacters[Math.floor(Math.random() * (upperCasedCharacters.length))] 
       UserPassword = UserPassword + uc;
       passLenght++;
-      console.log("UCH added run test")
+      // console.log("run test uc")
     }
-
-    
-
-    
+       
   }   
-  // while end - password random character assigment
 
-  //return the generated password back to the calling function
+  // --------------- while end - password random character assigment completed ----------------------
+
+  // ----------------------- returning the generated password back to the calling function ----------
   console.log(UserPassword)
   console.log("Password Lenght "+ UserPassword.length)
   return UserPassword;
 }  
 
-/* note: 
+/* note: random general build
 function random_item(items) {}
  return items[Math.floor(Math.random()*items.length)];
 console.log(random.item(items)) } */ 
 
+// ----------------------------------- get random end -----------------------------------------------
 
 
 
-// ----------------------------------- get random end ------------------------------------
+// ------------ Function to generate password with user input --------------- source function -------
 
 
-
-// Function to generate password with user input ---------------------- source function ------
 function generatePassword() {
-          // own code ---------------------
-  // start criteria 
-  UserPasswordLenght = 0;
-  passLenght = 0;
-  // UserPassword = "";           //----------------  old code - remove?
+          
+  // ------------------------------------------------------------------  own code -------------------
+    
+    
+    //Checking if password lengh criteria is fulfilled 
+    while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
+      UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
+                                  "\n How strong you would like it to be?");
+    }
+    console.log ( "check password lenght")
+    
 
+    
+      //if user presses cancel                    // --------- note: placeholder- for correction 
+      if (UserPasswordLenght === null) {
+        alert("Password must be between 8 and 128 characters."+
+        "\n Let's Try Again.");
+        console.log("cancel")
+        return "Your secure password"; 
+        
+        
+        
+        // return "Your secure password";
+        
+        }
+    
+      else{
+            //checking user enters an integer
+            if (!isFinite(UserPasswordLenght)) {
+            alert("You did not enter a number"+"Let's Try Again.");
+            return "Your secure password";
+            }
 
+                    //check password meets length criteria
+          if (UserPasswordLenght < 8 || UserPasswordLenght > 128) {
+            alert("Password must be between 8 and 128 characters."+
+            "\n Let's Try Again.");
+            return "Your secure password"; }
+          
+          else {
 
-  
-  //Checking if password lengh criteria are fulfilled 
-  while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
-    UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
-                                "\n How strong you would like it to be?");
-  }
-  console.log ( "check password lenght")
-  
-    //if user presses cancel                    // --------- note: placeholder- for correction 
-    if (UserPasswordLenght === null) {
-      console.log("cancel")
-      return "Your secure password";
+            //call the internal function to show prompts for criteria
+            getPasswordOptions(); 
+            console.log("password options")  
       
-       }
-   
-    else{
-          //checking user enters an integer
-          if (!isFinite(UserPasswordLenght)) {
-          alert("You did not enter a number"+"Let's Try Again.");
-          return "Your secure password";
-          }
-
-                  //check password meets length criteria
-        if (UserPasswordLenght < 8 || UserPasswordLenght > 128) {
-          alert("Password must be between 8 and 128 characters."+
-          "\n Let's Try Again.");
-          return "Your secure password"; }
-        
-        else {
-
-          //call the internal function to show prompts for criteria
-          getPasswordOptions(); 
-          console.log("password options")  
+            
+  // ----------------------------------------------------------------
           
           
-// ----------------------------------------------------------------
-
-
-
-
-
-          
-        
-        }}
-        return UserPassword;
-}
+          }}
+          return UserPassword;  // return user password to write function
+  }
 
 
 
