@@ -35,8 +35,8 @@ var UserNumericCharacters;
 var UserLowerCasedCharacters;
 var UserUpperCasedCharacters; 
 
-  // variable holding user Password
-  var UserPassword = ""; //note: leave as string or change to array (?) 
+// variable holding user Password
+var UserPassword = [];  // ""; //note: leave as string or change to array (?) 
 
 
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
@@ -109,14 +109,15 @@ function getRandom(arr) {
   console.log(UserPassword)
   console.log("Password Lenght "+ UserPassword.length)
   return UserPassword;
+}  
 
-
-/* function random_item(items) {}
+/* note: 
+function random_item(items) {}
  return items[Math.floor(Math.random()*items.length)];
 console.log(random.item(items)) } */ 
 
 
-}  
+
 
 // ----------------------------------- get random end ------------------------------------
 
@@ -176,6 +177,7 @@ function generatePassword() {
           
         
         }}
+        return UserPassword;
 }
 
 
@@ -188,10 +190,11 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var UserPassword = generatePassword();
+  console.log("writePassword")
+  var password = generatePassword();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = UserPassword;
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
