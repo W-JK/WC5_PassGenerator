@@ -5,12 +5,12 @@
 
 //----------------------------- Allowed Pasword Charakters ------------------------------------------------------------------------------------------
 
-
 var passLenght = 0;   
 
 // Array of special characters to be included in password
 var specialCharacters = ['@','%','+','\\','/', "'",'!', '#', '$','^','?',':',',',')','(','}','{',']','[','~','-','_','.'];
 // console.table(specialCharacters)
+
 
 // Array of numeric characters to be included in password
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -23,6 +23,7 @@ var lowerCasedCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m',
 // Array of uppercase characters to be included in password
 var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 // console.table(upperCasedCharacters)
+// console.log("All Charakters Lenght: "+ specialCharacters.length + numericCharacters.length + lowerCasedCharacters.length+upperCasedCharacters.length)
 
 //------------------------------- Password Characters end -----------------------------------------------------------------------------------
 
@@ -34,11 +35,10 @@ var UserLowerCasedCharacters;
 var UserUpperCasedCharacters; 
 
 // variable holding user Password
-var UserPassword = [];                
+var UserPassword = [];             
+
 
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
-
-
 
 
 // Function to prompt user for password options
@@ -55,8 +55,8 @@ console.log(UserUpperCasedCharacters) // displaying user choice in console
 
 
 // User character selection none - prompt for at least 1 option and return
-if(UserSpecialCharacters === false && UserNumericCharacters === false && UserLowerCasedCharacters === false && UserUpperCasedCharacters)
-  {  alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters")
+if(UserSpecialCharacters === false && UserNumericCharacters === false && UserLowerCasedCharacters === false && UserUpperCasedCharacters === false)
+  {  alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters");
     getPasswordOptions(); 
 }
 else{
@@ -96,12 +96,12 @@ function getRandom(arr) {
       var uc = upperCasedCharacters[Math.floor(Math.random() * (upperCasedCharacters.length))] 
       UserPassword = UserPassword + uc;
       passLenght++;
-      // console.log("run test uc")
+       console.log("run test uc")
     }
        
   }   
-
   // --------------- while end - password random character assigment completed ----------------------
+
 
   // ----------------------- returning the generated password back to the calling function ----------
   console.log(UserPassword)
@@ -111,28 +111,33 @@ function getRandom(arr) {
 
 // ----------------------------------- get random end -----------------------------------------------
 
-// ------------ Function to generate password with user input --------------- source function -------
+// ------------ Function to generate password with user input --------- source function -------------
 
 function generatePassword() {
           
   // ------------------------------------------------------------------  own code -------------------
-        
-    //Checking if password lengh criteria is fulfilled 
+    //------------- Initial values/value reset ------------------------------------------------------
+  UserPasswordLenght = 0;
+  UserPassword = "";
+  passLenght = 0;
+    
+    //------------ Checking if password lengh criteria is fulfilled ---------------------------------
     while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
       UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
                                   "\n How strong you would like it to be?");
-    }
+     }
     console.log ( "check password lenght")
-        
+    
+
+    
       //if user presses cancel                    // --------- note: placeholder- for correction 
       if (UserPasswordLenght === null) {
         alert("Password must be between 8 and 128 characters."+
         "\n Let's Try Again.");
         console.log("cancel")
-        return "Your secure password";          
         
-        // return "Your secure password";
-        
+        // return "Your secure password";          
+          
         }
     
       else{
@@ -152,11 +157,21 @@ function generatePassword() {
 
             //call the internal function to show prompts for criteria
             getPasswordOptions(); 
-            console.log("password options")     
-          }} 
-  // ----------------------------------------------------------------              
+            console.log("password options")  
+      
+            
+  // ----------------------------------------------------------------
+          
+          
+          }
+        }
           return UserPassword;  // return user password to write function
   }
+
+
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -166,9 +181,10 @@ function writePassword() {
   console.log("writePassword")
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
+  
   passwordText.value = password;
 }
 
 // Add event listener to generate button
+
 generateBtn.addEventListener('click', writePassword);
