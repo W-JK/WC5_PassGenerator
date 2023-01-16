@@ -21,11 +21,11 @@ This project is available under below link: https://w-jk.github.io/WC5_PassGener
 Code can be accesset also on Git Hub from the below repository: https://github.com/W-JK/WC5_PassGenerator.git
 
 screenshoots
-[![markdown screenchoot]](./assets/Screenshot%20-%20app%20screen.png)
+[![markdown screenshot]](./assets/Screenshot%20-%20app%20screen.png)
 
 
 
-![Alt text](assets/Screenshot%20-%20app%20screen.png)
+![markdown screenshot "live image"](assets/Screenshot%20-%20app%20screen.png)
 
 ## Credits
 
