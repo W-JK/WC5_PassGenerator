@@ -125,12 +125,12 @@ function generatePassword() {
     while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
       UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
                                   "\n How strong you would like it to be?");
-     }
+     
     console.log ( "check password lenght")
     
     
       //if user presses cancel                    // --------- note: placeholder- for correction 
-      if (UserPasswordLenght === null) {
+      if (UserPasswordLenght === null ) {
         alert("Password must be between 8 and 128 characters."+
         "\n Let's Try Again.");
         console.log("cancel")
@@ -161,7 +161,7 @@ function generatePassword() {
   // --------------------------------------------------------------------       
           
           }
-        }
+        }}
           return UserPassword;  // note: return user password to write function
   }
 
