@@ -128,7 +128,6 @@ function generatePassword() {
      }
     console.log ( "check password lenght")
     
-
     
       //if user presses cancel                    // --------- note: placeholder- for correction 
       if (UserPasswordLenght === null) {
@@ -157,23 +156,16 @@ function generatePassword() {
 
             //call the internal function to show prompts for criteria
             getPasswordOptions(); 
-            console.log("password options")  
-      
+            console.log("password options")        
             
-  // ----------------------------------------------------------------
-          
+  // --------------------------------------------------------------------       
           
           }
         }
-          return UserPassword;  // return user password to write function
+          return UserPassword;  // note: return user password to write function
   }
 
-
-
-
-
-
-// Get references to the #generate element
+// -----------  Get references to the #generate element -----------------
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
@@ -181,10 +173,9 @@ function writePassword() {
   console.log("writePassword")
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-  
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// -------------- Add event listener to generate button ------------
 
 generateBtn.addEventListener('click', writePassword);
