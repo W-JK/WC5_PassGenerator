@@ -25,7 +25,9 @@ var upperCasedCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
 // console.table(upperCasedCharacters)
 // console.log("All Charakters Lenght: "+ specialCharacters.length + numericCharacters.length + lowerCasedCharacters.length+upperCasedCharacters.length)
 
-//------------------------------- Password Characters end -----------------------------------------------------------------------------------
+//------------------------------- Password Characters end ----------------------------------------------------------------------------------
+
+
 
 // ------------------------------ User Imput - Variables to collect & store  ---------------------------------------------------------------
 var UserPasswordLenght = 0;
@@ -41,7 +43,7 @@ var UserPassword = [];
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
 
 
-// Function to prompt user for password options
+//------------------------------ Function to prompt user for password options -------------------------------------------------------------
 function getPasswordOptions() {  
   // build test: console.log("getPasswordOptions") 
 UserSpecialCharacters    = confirm("Do you want to use any special characters?");
@@ -54,18 +56,18 @@ UserUpperCasedCharacters = confirm("Do you want to use upper case letters?");
 console.log(UserUpperCasedCharacters) // displaying user choice in console
 
 
-// User character selection none - prompt for at least 1 option and return
+// ---------- User character selection none - prompt for at least 1 option and return ------------------------------------------------------
 if(UserSpecialCharacters === false && UserNumericCharacters === false && UserLowerCasedCharacters === false && UserUpperCasedCharacters === false)
   {  alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters");
     getPasswordOptions(); 
 }
 else{
-  console.log(UserPasswordLenght)
+  // build test: console.log(UserPasswordLenght)
   getRandom()}
 
 }
 
-// Function for getting a random element from an array ---------- source function  ------------
+// -------------- getting a random element from an array ---------- source function  --------------------------------------------------------
 
 function getRandom(arr) { 
   // test: console.log("get random start point ")
@@ -96,7 +98,7 @@ function getRandom(arr) {
       var uc = upperCasedCharacters[Math.floor(Math.random() * (upperCasedCharacters.length))] 
       UserPassword = UserPassword + uc;
       passLenght++;
-       console.log("run test uc")
+      // console.log("run test uc")
     }
        
   }   
@@ -111,11 +113,11 @@ function getRandom(arr) {
 
 // ----------------------------------- get random end -----------------------------------------------
 
-// ------------ Function to generate password with user input --------- source function -------------
+// ------------ Function to generate password with user input ---------------------------------------
 
 function generatePassword() {
           
-  // ------------------------------------------------------------------  own code -------------------
+  // ------------------------------------------------------------------------------------------------
     //------------- Initial values/value reset ------------------------------------------------------
   UserPasswordLenght = 0;
   UserPassword = "";
@@ -126,16 +128,21 @@ function generatePassword() {
       UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
                                   "\n How strong you would like it to be?");
      
-    console.log ( "check password lenght")
+    // test point : console.log ( "check password lenght")
     
     
-      //if user presses cancel                    // --------- note: placeholder- for correction 
+      // ---------------- cancel & no selection ------------------------------------------------------                 
       if (UserPasswordLenght === null ) {
-        alert("Password must be between 8 and 128 characters."+
-        "\n Let's Try Again.");
-        console.log("cancel")
         
-        // return "Your secure password";          
+        let CreatePassword = confirm("You not selected password lenght."+"\n Would you like to quit?");
+             if (CreatePassword) {
+              alert("Thank You for using our Passwor Generator");
+              break;
+             }
+             else { alert("Please choice pasword lenght") }
+        // test point: console.log("cancel")
+        
+              
           
         }
     
@@ -156,7 +163,7 @@ function generatePassword() {
 
             //call the internal function to show prompts for criteria
             getPasswordOptions(); 
-            console.log("password options")        
+            //test point: console.log("password options")        
             
   // --------------------------------------------------------------------       
           
@@ -170,7 +177,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  console.log("writePassword")
+ // test point: console.log("writePassword")
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
   passwordText.value = password;
