@@ -34,8 +34,7 @@ var UserLowerCasedCharacters;
 var UserUpperCasedCharacters; 
 
 // variable holding user Password
-var UserPassword = [];                // ""; //note: additional flexibility - string or array can be used
-
+var UserPassword = [];                
 
 // ----------------------------- User variable end ----------------------------------------------------------------------------------------
 
@@ -110,40 +109,27 @@ function getRandom(arr) {
   return UserPassword;
 }  
 
-/* note: random general build
-function random_item(items) {}
- return items[Math.floor(Math.random()*items.length)];
-console.log(random.item(items)) } */ 
-
 // ----------------------------------- get random end -----------------------------------------------
 
-
-
 // ------------ Function to generate password with user input --------------- source function -------
-
 
 function generatePassword() {
           
   // ------------------------------------------------------------------  own code -------------------
-    
-    
+        
     //Checking if password lengh criteria is fulfilled 
     while (UserPasswordLenght < 8 || UserPasswordLenght > 128 ){
       UserPasswordLenght = prompt("Strong Password should have between 8 and 128 characters." +
                                   "\n How strong you would like it to be?");
     }
     console.log ( "check password lenght")
-    
-
-    
+        
       //if user presses cancel                    // --------- note: placeholder- for correction 
       if (UserPasswordLenght === null) {
         alert("Password must be between 8 and 128 characters."+
         "\n Let's Try Again.");
         console.log("cancel")
-        return "Your secure password"; 
-        
-        
+        return "Your secure password";          
         
         // return "Your secure password";
         
@@ -166,20 +152,11 @@ function generatePassword() {
 
             //call the internal function to show prompts for criteria
             getPasswordOptions(); 
-            console.log("password options")  
-      
-            
-  // ----------------------------------------------------------------
-          
-          
-          }}
+            console.log("password options")     
+          }} 
+  // ----------------------------------------------------------------              
           return UserPassword;  // return user password to write function
   }
-
-
-
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
