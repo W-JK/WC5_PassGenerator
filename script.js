@@ -64,10 +64,9 @@ if(UserSpecialCharacters === false && UserNumericCharacters === false && UserLow
 else{
   // build test: console.log(UserPasswordLenght)
   getRandom()}
-
 }
 
-// -------------- getting a random element from an array ---------- source function  --------------------------------------------------------
+// -------------- getting a random element from an array ------------------------------------------------------------------
 
 function getRandom(arr) { 
   // test: console.log("get random start point ")
@@ -168,7 +167,8 @@ function generatePassword() {
   // --------------------------------------------------------------------       
           
           }
-        }}
+        }
+      }
           return UserPassword;  // note: return user password to write function
   }
 
